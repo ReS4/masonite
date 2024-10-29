@@ -6,10 +6,9 @@ class Queueable:
 
     run_again_on_fail = True
     run_times = 3
-    
+
     def queue(self):
         return "default"
-    
 
     def handle(self):
         pass
