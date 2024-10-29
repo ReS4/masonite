@@ -12,11 +12,13 @@ class Notifiable:
     Usage:
         user.notify(WelcomeNotification())
     """
-
     def notify(self, notification, drivers=[], dry=False, fail_silently=False):
         """Send the given notification."""
         from wsgi import application
-
+        
+        if hasattr(notification, "send"):
+            notification.send(notification, drivers, dry, fail_silently)
+        
         return application.make("notification").send(
             self, notification, drivers, dry, fail_silently
         )
